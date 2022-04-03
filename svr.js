@@ -1,12 +1,42 @@
 import express from "express";
+import { v4 as uuidv4 } from "uuid";
 
 const app = express();
 app.use(express.static("client"));
 
-const bricks = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5", "Item 6", "Item 7", "Item 8", "Item 9", "Item 10",];
+let bricks = [
+    {
+        id: 'xnshfdsafasd',
+        brickName: 'Brick 1',
+        color: 'Sand Green',
+        price: 0.10,
+    },
+    {
+        id: 'dskjdshkjhsd',
+        brickName: 'Brick 2',
+        color: 'pink',
+        price: 0.20,
+    },
+    {
+        id: 'vcxbxcvfggzv',
+        brickName: 'Brick 3',
+        color: 'green',
+        price: 0.11,
+    },
+];
 
 app.get('/bricks', (req, res) => {
     res.json(bricks);
+});
+
+app.get('/bricks/:id', (req, res) => {
+    for (const brick of bricks) {
+        if (message.id === req.params.id) {
+            res.json(brick);
+            return;
+        }
+    }
+    res.status(404).send('No matching brick for that ID.');
 });
 
 app.listen(8080);

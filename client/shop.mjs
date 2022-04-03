@@ -1,4 +1,5 @@
-import {load} from "./eventHandler.mjs";
+import { load } from "./eventHandler.mjs";
+import { addToCart } from "./cart.mjs";
 
 const el = {};
 
@@ -8,7 +9,7 @@ function removeContentFrom(what) {
 }
 
 // Add an array of bricks to the shop page
-function showBricks(bricks, where) {
+export function showBricks(bricks, where) {
     for (const brick of bricks) {
         const li = document.createElement('li');
         where.append(li);
@@ -57,7 +58,6 @@ function createBrickElements(where) {
 
 async function loadBricks() {
     const response = await fetch('bricks');
-    console.log(response);
     let bricks;
     if (response.ok) {
         bricks = await response.json();
@@ -75,10 +75,30 @@ function prepareHandles() {
     el.bricksList = document.querySelector('#bricksList2');
 }
 
-export function brickQuantity() {
-    console.log("click");
+// Increases and decreases bricks quantity input box
+export function brickQuantity(e) {
+    let el = e.target.parentElement;
+    let input = el.querySelector('input');
+
+    let num = parseInt(input.value);
+
+    if (e.target.id === 'buttonAdd') {
+        num += 1;
+        input.value = num;
+    } else if (e.target.id === 'buttonMinus' && num !== 0) {
+        num -= 1;
+        input.value = num;
+    } else if (num !== 0) {
+        addToLocalStorage(el.dataset.id, num);
+        input.value = 0;
+        addToCart();
+    }
 }
- 
+
+function addToLocalStorage(what, quantity) {
+    localStorage.setItem(what, quantity);
+}
+
 function pageLoaded() {
     prepareHandles();
     loadBricks();

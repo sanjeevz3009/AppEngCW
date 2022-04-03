@@ -1,4 +1,4 @@
-import {brickQuantity} from "./shop.mjs";
+import { brickQuantity } from "./shop.mjs";
 
 // Page elements used in the program are
 // setup here for convenience

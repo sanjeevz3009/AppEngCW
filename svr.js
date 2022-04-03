@@ -23,15 +23,37 @@ let bricks = [
         color: 'green',
         price: 0.11,
     },
+
+    {
+        id: 'sdgfdfgdgdfg',
+        brickName: 'Brick 4',
+        color: 'green',
+        price: 0.17,
+    },
+
+    {
+        id: 'dfkgdjjkdkdkdd',
+        brickName: 'Brick 5',
+        color: 'green',
+        price: 0.30,
+    },
+
+    {
+        id: 'mdfkdfkdfkfff',
+        brickName: 'Brick 6',
+        color: 'green',
+        price: 0.50,
+    },
 ];
 
 app.get('/bricks', (req, res) => {
     res.json(bricks);
 });
 
+
 app.get('/bricks/:id', (req, res) => {
     for (const brick of bricks) {
-        if (message.id === req.params.id) {
+        if (brick.id === req.params.id) {
             res.json(brick);
             return;
         }

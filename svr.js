@@ -9,18 +9,21 @@ let bricks = [
         id: 'xnshfdsafasd',
         brickName: 'Brick 1',
         color: 'Sand Green',
+        quantity: 10,
         price: 0.10,
     },
     {
         id: 'dskjdshkjhsd',
         brickName: 'Brick 2',
         color: 'pink',
+        quantity: 20, 
         price: 0.20,
     },
     {
         id: 'vcxbxcvfggzv',
         brickName: 'Brick 3',
         color: 'green',
+        quantity: 15,
         price: 0.11,
     },
 
@@ -28,6 +31,7 @@ let bricks = [
         id: 'sdgfdfgdgdfg',
         brickName: 'Brick 4',
         color: 'green',
+        quantity: 12,
         price: 0.17,
     },
 
@@ -35,6 +39,7 @@ let bricks = [
         id: 'dfkgdjjkdkdkdd',
         brickName: 'Brick 5',
         color: 'green',
+        quantity: 7,
         price: 0.30,
     },
 
@@ -42,6 +47,7 @@ let bricks = [
         id: 'mdfkdfkdfkfff',
         brickName: 'Brick 6',
         color: 'green',
+        quantity: 8,
         price: 0.50,
     },
 ];

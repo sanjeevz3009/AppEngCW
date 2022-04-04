@@ -1,10 +1,13 @@
+console.log("Pussy");
+
 import { load } from "./eventHandler.mjs";
-import { addToCart } from "./cart.mjs";
+// import { addToCart } from "./cart.mjs";
 
 const el = {};
 
 // Removes all contents from a given element
 function removeContentFrom(what) {
+    console.log(what);
     what.textContent = '';
 }
 
@@ -91,7 +94,7 @@ export function brickQuantity(e) {
     } else if (num !== 0) {
         addToLocalStorage(el.dataset.id, num);
         input.value = 0;
-        addToCart();
+        // addToCart();
     }
 }
 

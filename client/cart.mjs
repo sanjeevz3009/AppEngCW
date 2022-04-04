@@ -2,27 +2,16 @@ import { showBricks } from './shop.mjs';
 
 const el = {};
 
-export function addToCart() {
-    let items = [];
-    for (let i=0; i<localStorage.length; i++) {
-        let tempItem = [];
-        tempItem.push(localStorage.key(i), localStorage.getItem(localStorage.key(i)));
-        items.push(tempItem);
-        tempItem = [];
-    }
-    console.log(items);
-}
-
-// async function showDetail(e) {
-//     const response = await fetch('messages/' + e.target.dataset.id);
-//     if (response.ok) {
-//       const detail = await response.json();
-//       const p = document.createElement('p');
-//       p.textContent = `Message received on server at ${detail.time}`;
-//       removeContentFrom(el.detail);
-//       el.detail.append(p);
+// export function addToCart() {
+//     let items = [];
+//     for (let i=0; i<localStorage.length; i++) {
+//         let tempItem = [];
+//         tempItem.push(localStorage.key(i), localStorage.getItem(localStorage.key(i)));
+//         items.push(tempItem);
+//         tempItem = [];
 //     }
-//   }
+//     console.log(items);
+// }
 
 function getItems() {
     let items = [];
@@ -55,7 +44,7 @@ function prepareHandles() {
 }
 
 function pageLoaded() {
-    console.log("Moew");
+    console.log("Cart page loaded");
     prepareHandles();
     showBricksCart();
 }

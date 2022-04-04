@@ -1,20 +1,9 @@
-import { showBricks } from './shop.mjs';
+import { showBricks } from './displayBricks.mjs';
 
 const el = {};
 
-// export function addToCart() {
-//     let items = [];
-//     for (let i=0; i<localStorage.length; i++) {
-//         let tempItem = [];
-//         tempItem.push(localStorage.key(i), localStorage.getItem(localStorage.key(i)));
-//         items.push(tempItem);
-//         tempItem = [];
-//     }
-//     console.log(items);
-// }
-
 function getItems() {
-    let items = [];
+    const items = [];
     for (let i=0; i<localStorage.length; i++) {
         let tempItem = [];
         tempItem.push(localStorage.key(i), localStorage.getItem(localStorage.key(i)));
@@ -25,13 +14,13 @@ function getItems() {
 }
 
 async function showBricksCart() {
-    let items = getItems();
+    const items = getItems();
     for (const item of items) {
-        let response = await fetch('bricks/' + item[0]);
+        const response = await fetch('bricks/' + item[0]);
         if (response.ok) {
-            console.log(response.json());
-        } else {
-            console.log("Error");
+            const data = await response.json();
+            console.log(data);
+            showBricks(data, el.cartList);
         }
     }
     // showBricks(, el.cartList);

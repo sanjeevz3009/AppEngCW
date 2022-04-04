@@ -1,7 +1,8 @@
 console.log("Pussy");
 
-import { load } from "./eventHandler.mjs";
+// import { load } from "./eventHandler.mjs";
 // import { addToCart } from "./cart.mjs";
+import { showBricks } from "./displayBricks.mjs";
 
 const el = {};
 
@@ -9,54 +10,6 @@ const el = {};
 function removeContentFrom(what) {
     console.log(what);
     what.textContent = '';
-}
-
-// Add an array of bricks to the shop page
-export function showBricks(bricks, where) {
-    for (const brick of bricks) {
-        const li = document.createElement('li');
-        where.append(li);
-        const div = document.createElement('div');
-        div.textContent = brick.brickName;
-        li.append(div);
-        div.dataset.id = brick.id;
-
-        createBrickElements(div);
-    }
-}
-
-// Creates the add, minus and checkout elements
-// for each of the brick on the page
-function createBrickElements(where) {
-    const buttonMinus = document.createElement('button');
-    buttonMinus.id = "buttonMinus";
-    buttonMinus.textContent = "-";
-
-    where.append(buttonMinus);
-
-    const inputQuantity = document.createElement('input');
-    inputQuantity.id = "input";
-    inputQuantity.value = "0";
-    inputQuantity.type = "number";
-
-    where.append(inputQuantity);
-
-    const buttonAdd = document.createElement('button');
-    buttonAdd.id = "buttonAdd";
-    buttonAdd.textContent = "+";
-    
-    where.append(buttonAdd);
-
-    const buttonAddBasket = document.createElement('button');
-    buttonAddBasket.id = "addBasket";
-    buttonAddBasket.textContent = "Add To Basket";
-
-    where.append(buttonAddBasket);
-
-    // Executes the functions necessaray from
-    // the eventHandler module
-    // to attach the buttons elements to each brick
-    load();
 }
 
 async function loadBricks() {
@@ -103,6 +56,7 @@ function addToLocalStorage(what, quantity) {
 }
 
 function pageLoaded() {
+    console.log("Shop page loaded");
     prepareHandles();
     loadBricks();
 }

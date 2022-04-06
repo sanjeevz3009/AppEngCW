@@ -4,6 +4,8 @@ import { brickQuantity } from "./brickQuantity.mjs";
 // setup here for convenience
 const el = {};
 
+// Page elements used in the program are
+// setup here for convenience
 function prepareHandlesBricks() {
     el.buttonAdd = document.querySelectorAll("#buttonAdd");
     el.buttonMinus = document.querySelectorAll("#buttonMinus");

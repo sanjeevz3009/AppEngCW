@@ -1,1 +1,14 @@
-Application Engineering Course Work.
+# QJet - Airline Booking & Management System
+### Usuage
+* 
+* 
+### Features
+* 
+* 
+* 
+### Future improvements
+* 
+* 
+### Files
+>
+* 

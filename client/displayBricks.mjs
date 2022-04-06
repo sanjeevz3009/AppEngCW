@@ -58,3 +58,23 @@ function createBrickElements(where) {
     // to attach the buttons elements to each brick
     load();
 }
+
+// Increases and decreases bricks quantity input box
+export function brickQuantity(e) {
+    let el = e.target.parentElement;
+    let input = el.querySelector('input');
+
+    let num = parseInt(input.value);
+
+    if (e.target.id === 'buttonAdd') {
+        num += 1;
+        input.value = num;
+    } else if (e.target.id === 'buttonMinus' && num !== 0) {
+        num -= 1;
+        input.value = num;
+    } else if (num !== 0) {
+        addToLocalStorage(el.dataset.id, num);
+        input.value = 0;
+        // addToCart();
+    }
+}

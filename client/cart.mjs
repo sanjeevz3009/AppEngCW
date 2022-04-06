@@ -1,4 +1,4 @@
-import { showBricks } from './displayBricks.mjs';
+import { showBricks } from "./displayBricks.mjs";
 
 const el = {};
 
@@ -16,7 +16,7 @@ function getItems() {
 async function showBricksCart() {
     const items = getItems();
     for (const item of items) {
-        const response = await fetch('bricks/' + item[0]);
+        const response = await fetch("bricks/" + item[0]);
         if (response.ok) {
             const data = await response.json();
             console.log(data);
@@ -29,7 +29,7 @@ async function showBricksCart() {
 // Page elements used in the program are
 // setup here for convenience
 function prepareHandles() {
-    el.cartList = document.querySelector('#cartList2');
+    el.cartList = document.querySelector("#cartList2");
 }
 
 function pageLoaded() {
@@ -38,4 +38,4 @@ function pageLoaded() {
     showBricksCart();
 }
 
-window.addEventListener('load', pageLoaded);
+window.addEventListener("load", pageLoaded);

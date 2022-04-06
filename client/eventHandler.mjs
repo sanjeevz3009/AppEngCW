@@ -1,19 +1,19 @@
-import { brickQuantity } from "./displayBricks.mjs";
+import { brickQuantity } from "./brickQuantity.mjs";
 
 // Page elements used in the program are
 // setup here for convenience
 const el = {};
 
 function prepareHandlesBricks() {
-    el.buttonAdd = document.querySelectorAll('#buttonAdd');
-    el.buttonMinus = document.querySelectorAll('#buttonMinus');
-    el.buttonAddBasket = document.querySelectorAll('#addBasket');
+    el.buttonAdd = document.querySelectorAll("#buttonAdd");
+    el.buttonMinus = document.querySelectorAll("#buttonMinus");
+    el.buttonAddBasket = document.querySelectorAll("#addBasket");
 }
 
 // Connect listeners for button clicks
 function addEventListeners(where) {
     for (const button of where) {
-        button.addEventListener('click', brickQuantity);
+        button.addEventListener("click", brickQuantity);
     }
 }
 

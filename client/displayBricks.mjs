@@ -4,9 +4,9 @@ import { load } from "./eventHandler.mjs";
 export function showBricks(bricks, where) {
     if (bricks.length > 1) {
         for (const brick of bricks) {
-            const li = document.createElement('li');
+            const li = document.createElement("li");
             where.append(li);
-            const div = document.createElement('div');
+            const div = document.createElement("div");
             div.textContent = brick.brickName;
             li.append(div);
             div.dataset.id = brick.id;
@@ -14,9 +14,9 @@ export function showBricks(bricks, where) {
             createBrickElements(div);
         }
     } else {
-        const li = document.createElement('li');
+        const li = document.createElement("li");
         where.append(li);
-        const div = document.createElement('div');
+        const div = document.createElement("div");
         div.textContent = bricks.brickName;
         li.append(div);
         div.dataset.id = bricks.id;
@@ -28,26 +28,26 @@ export function showBricks(bricks, where) {
 // Creates the add, minus and checkout elements
 // for each of the brick on the page
 function createBrickElements(where) {
-    const buttonMinus = document.createElement('button');
+    const buttonMinus = document.createElement("button");
     buttonMinus.id = "buttonMinus";
     buttonMinus.textContent = "-";
 
     where.append(buttonMinus);
 
-    const inputQuantity = document.createElement('input');
+    const inputQuantity = document.createElement("input");
     inputQuantity.id = "input";
     inputQuantity.value = "0";
     inputQuantity.type = "number";
 
     where.append(inputQuantity);
 
-    const buttonAdd = document.createElement('button');
+    const buttonAdd = document.createElement("button");
     buttonAdd.id = "buttonAdd";
     buttonAdd.textContent = "+";
     
     where.append(buttonAdd);
 
-    const buttonAddBasket = document.createElement('button');
+    const buttonAddBasket = document.createElement("button");
     buttonAddBasket.id = "addBasket";
     buttonAddBasket.textContent = "Add To Basket";
 
@@ -57,24 +57,4 @@ function createBrickElements(where) {
     // the eventHandler module
     // to attach the buttons elements to each brick
     load();
-}
-
-// Increases and decreases bricks quantity input box
-export function brickQuantity(e) {
-    let el = e.target.parentElement;
-    let input = el.querySelector('input');
-
-    let num = parseInt(input.value);
-
-    if (e.target.id === 'buttonAdd') {
-        num += 1;
-        input.value = num;
-    } else if (e.target.id === 'buttonMinus' && num !== 0) {
-        num -= 1;
-        input.value = num;
-    } else if (num !== 0) {
-        addToLocalStorage(el.dataset.id, num);
-        input.value = 0;
-        // addToCart();
-    }
 }

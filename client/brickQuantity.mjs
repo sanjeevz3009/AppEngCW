@@ -14,7 +14,6 @@ export function brickQuantity(e) {
     } else if (num !== 0) {
         // Sends the id and quantity to local storage function
         addToLocalStorage(el.dataset.id, num);
-        input.value = 0;
     }
 }
 

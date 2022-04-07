@@ -1,5 +1,12 @@
 import { load } from "./eventHandler.mjs";
 
+// Gets the quantity of a brick added by the user
+// to the basket, saved using localStorage API
+function getBrickQuantity(id) {
+    const quantity = localStorage.getItem(id);
+    return quantity;
+}
+
 // Sets the brick attributes
 function setBrickAttributes(brick, where) {
     const li = document.createElement("li");
@@ -21,27 +28,13 @@ function setBrickAttributes(brick, where) {
     divColor.textContent = brick.color;
     divID.append(divColor);
 
-    createBrickElements(divID);
-}
-
-// Add an array of bricks to the shop page
-// With brick name, price and colour
-
-export function showBricks(bricks, where) {
-    if (bricks.length > 1) {
-        for (const brick of bricks) {
-            setBrickAttributes(brick, where);
-        }
-    } else {
-        setBrickAttributes(brick, where);
-    }
+    const quantity = getBrickQuantity(brick.id);
+    createBrickElements(divID, quantity);
 }
 
 // Creates the add, minus and checkout elements
 // for each of the brick on the page
-
-// Refactor this function
-function createBrickElements(where) {
+function createBrickElements(where, quantity) {
     const div = document.createElement("div");
     where.append(div);
     
@@ -53,7 +46,13 @@ function createBrickElements(where) {
 
     const inputQuantity = document.createElement("input");
     inputQuantity.id = "input";
-    inputQuantity.value = "0";
+
+    if (quantity) {
+        inputQuantity.value = quantity;
+    } else {
+        inputQuantity.value = "0";
+    }
+    
     inputQuantity.type = "number";
 
     div.append(inputQuantity);
@@ -74,4 +73,16 @@ function createBrickElements(where) {
     // the eventHandler module
     // to attach the buttons elements to each brick
     load();
+}
+
+// Add an array of bricks to the shop page
+// With brick name, price and colour
+export function showBricks(bricks, where) {
+    if (bricks.length > 1) {
+        for (const brick of bricks) {
+            setBrickAttributes(brick, where);
+        }
+    } else {
+        setBrickAttributes(bricks, where);
+    }
 }

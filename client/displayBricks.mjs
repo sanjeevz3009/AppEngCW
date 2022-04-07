@@ -75,6 +75,25 @@ function createBrickElements(where, quantity) {
     load();
 }
 
+// Creates the total price element and checkout button
+// on the cart page
+export function checkoutElements(totalPrice) {
+    const cartList2 = document.querySelector("#cartList2");
+    const divID = document.createElement("div");
+    divID.id = "checkoutBox";
+    cartList2.append(divID);
+
+    const div = document.createElement("div");
+    div.id = "totalPrice";
+    div.textContent = `Total price: £${totalPrice}`;
+    divID.append(div);
+
+    const button = document.createElement("button");
+    button.id = "buttonCheckout";
+    button.textContent = "Checkout";
+    divID.append(button);
+}
+
 // Add an array of bricks to the shop page
 // With brick name, price and colour
 export function showBricks(bricks, where) {

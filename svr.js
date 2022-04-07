@@ -16,7 +16,7 @@ let bricks = [
     {
         id: "dskjdshkjhsd",
         brickName: "Brick 2",
-        color: "pink",
+        color: "Pink",
         quantity: "20", 
         price: "0.20",
     },

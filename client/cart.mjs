@@ -1,4 +1,6 @@
 import { showBricks } from "./displayBricks.mjs";
+import { checkoutElements } from "./displayBricks.mjs";
+import { checkout } from "./checkout.mjs";
 
 const el = {};
 
@@ -6,12 +8,6 @@ const el = {};
 function removeContentFrom(what) {
     console.log(what);
     what.textContent = "";
-}
-
-function deleteBrick(e) {
-    let el = e.target.parentElement;
-    localStorage.removeItem(el.dataset.id);
-    showBricksCart();
 }
 
 // Gets the items in the basket from
@@ -31,11 +27,13 @@ function getItems() {
 export async function showBricksCart() {
     removeContentFrom(el.cartList);
     const items = getItems();
+    const itemPrices = [];
     console.log(items);
     for (const item of items) {
         const response = await fetch("bricks/" + item[0]);
         if (response.ok) {
             const data = await response.json();
+            itemPrices.push(data.price);
             console.log(data);
             showBricks(data, el.cartList);
             createDeleteButton(item[0]);
@@ -43,6 +41,25 @@ export async function showBricksCart() {
     }
     updateAddBasketName();
     deleteButtonEventListener();
+    totalCartPrice(itemPrices);
+}
+
+// Calculates the total price of items on the cart page
+function totalCartPrice(itemPrices) {
+    console.log(itemPrices);
+    let totalPrice = 0;
+    for (const price of itemPrices) {
+        totalPrice += Number(price);
+    }
+    totalPrice = totalPrice.toFixed(2);
+    checkoutElements(totalPrice);
+    checkoutButtonEventListener();
+}
+
+// Listener for the checkout button on cart page
+function checkoutButtonEventListener() {
+    const buttonCheckout = document.querySelector("#buttonCheckout");
+    buttonCheckout.addEventListener("click", checkout);
 }
 
 // Updates all the buttons called Add To Basket to Update
@@ -65,18 +82,25 @@ function createDeleteButton(id) {
     divDataID.append(deleteButton);
 }
 
+// Deletes the brick off LocalStorage and updated cart page
+function deleteBrick(e) {
+    let el = e.target.parentElement;
+    localStorage.removeItem(el.dataset.id);
+    showBricksCart();
+}
+
+// Listeners for delete buttons on the cart page
+function deleteButtonEventListener() {
+    const deleteButton = document.querySelectorAll("#deleteButton");
+    for (const button of deleteButton) {
+        button.addEventListener("click", deleteBrick);
+    }
+}
+
 // Page elements used in the program are
 // setup here for convenience
 function prepareHandles() {
     el.cartList = document.querySelector("#cartList2");
-}
-
-function deleteButtonEventListener() {
-    const deleteButton = document.querySelectorAll("#deleteButton");
-    console.log(deleteButton);
-    for (const button of deleteButton) {
-        button.addEventListener("click", deleteBrick);
-    }
 }
 
 // Loads the page by executing the necessaray functions

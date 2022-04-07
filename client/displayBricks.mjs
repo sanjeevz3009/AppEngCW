@@ -1,39 +1,39 @@
 import { load } from "./eventHandler.mjs";
 
+// Sets the brick attributes
+function setBrickAttributes(brick, where) {
+    const li = document.createElement("li");
+    where.append(li);
+    
+    const divID = document.createElement("div");
+    divID.dataset.id = brick.id;
+    li.append(divID);
+
+    const divName = document.createElement("div");
+    divName.textContent = brick.brickName;
+    divID.append(divName);
+
+    const divPrice = document.createElement("div");
+    divPrice.textContent = `£${brick.price}`;
+    divID.append(divPrice);
+
+    const divColor = document.createElement("div");
+    divColor.textContent = brick.color;
+    divID.append(divColor);
+
+    createBrickElements(divID);
+}
+
 // Add an array of bricks to the shop page
 // With brick name, price and colour
 
-// Refactor this function
 export function showBricks(bricks, where) {
     if (bricks.length > 1) {
         for (const brick of bricks) {
-            const li = document.createElement("li");
-            where.append(li);
-            const div = document.createElement("div");
-            div.textContent = brick.brickName;
-            li.append(div);
-
-            const spanPrice = document.createElement("span");
-            spanPrice.textContent = `£${brick.price}`;
-            div.append(spanPrice);
-
-            const spanColor = document.createElement("span");
-            spanColor.textContent = brick.color;
-            div.append(spanColor);
-
-            div.dataset.id = brick.id;
-    
-            createBrickElements(div);
+            setBrickAttributes(brick, where);
         }
     } else {
-        const li = document.createElement("li");
-        where.append(li);
-        const div = document.createElement("div");
-        div.textContent = bricks.brickName;
-        li.append(div);
-        div.dataset.id = bricks.id;
-
-        createBrickElements(div);
+        setBrickAttributes(brick, where);
     }
 }
 
@@ -42,24 +42,27 @@ export function showBricks(bricks, where) {
 
 // Refactor this function
 function createBrickElements(where) {
+    const div = document.createElement("div");
+    where.append(div);
+    
     const buttonMinus = document.createElement("button");
     buttonMinus.id = "buttonMinus";
     buttonMinus.textContent = "-";
 
-    where.append(buttonMinus);
+    div.append(buttonMinus);
 
     const inputQuantity = document.createElement("input");
     inputQuantity.id = "input";
     inputQuantity.value = "0";
     inputQuantity.type = "number";
 
-    where.append(inputQuantity);
+    div.append(inputQuantity);
 
     const buttonAdd = document.createElement("button");
     buttonAdd.id = "buttonAdd";
     buttonAdd.textContent = "+";
     
-    where.append(buttonAdd);
+    div.append(buttonAdd);
 
     const buttonAddBasket = document.createElement("button");
     buttonAddBasket.id = "addBasket";

@@ -1,3 +1,3 @@
 export function checkout() {
-    console.log("Meow");
+    window.location.href = "/checkout.html";
 }

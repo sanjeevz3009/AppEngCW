@@ -2,6 +2,8 @@ import { showBricks } from "./displayBricks.mjs";
 import { checkoutElements } from "./displayBricks.mjs";
 import { getItems } from "./localStorage.mjs";
 
+// Move event listeners to another module
+
 const el = {};
 
 // Removes all contents from a given element

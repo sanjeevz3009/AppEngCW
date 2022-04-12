@@ -20,13 +20,6 @@ function addEventListeners(where) {
     }
 }
 
-// function deleteButtonEventListener() {
-//     const deleteButton = document.querySelectorAll("#deleteButton");
-//     for (const button of deleteButton) {
-//         button.addEventListener("click", deleteBrick);
-//     }
-// }
-
 // Loads all the functions in this file
 export function load() {
     prepareHandlesBricks();

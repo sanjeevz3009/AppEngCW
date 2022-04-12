@@ -14,6 +14,7 @@ async function loadBricks() {
     let bricks;
     if (response.ok) {
         bricks = await response.json();
+        console.log(bricks);
     } else {
         bricks = ["Failed to load the bricks!"];
     }

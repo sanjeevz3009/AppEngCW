@@ -1,6 +1,6 @@
 import { showBricks } from "./displayBricks.mjs";
 import { checkoutElements } from "./displayBricks.mjs";
-import { checkout } from "./checkout.mjs";
+import { getItems } from "./localStorage.mjs";
 
 const el = {};
 
@@ -8,19 +8,6 @@ const el = {};
 function removeContentFrom(what) {
     console.log(what);
     what.textContent = "";
-}
-
-// Gets the items in the basket from
-// local storage
-function getItems() {
-    const items = [];
-    for (let i=0; i<localStorage.length; i++) {
-        let tempItem = [];
-        tempItem.push(localStorage.key(i), localStorage.getItem(localStorage.key(i)));
-        items.push(tempItem);
-        tempItem = [];
-    }
-    return items;
 }
 
 // Displays the cart on the cart page
@@ -56,10 +43,16 @@ function totalCartPrice(itemPrices) {
     checkoutButtonEventListener();
 }
 
+
+// Changes the from cart page to checkout page
+function changePage() {
+    window.location.href = "/checkout.html";
+}
+
 // Listener for the checkout button on cart page
 function checkoutButtonEventListener() {
     const buttonCheckout = document.querySelector("#buttonCheckout");
-    buttonCheckout.addEventListener("click", checkout);
+    buttonCheckout.addEventListener("click", changePage);
 }
 
 // Updates all the buttons called Add To Basket to Update

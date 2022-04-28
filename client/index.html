@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <script type="module" src="index.mjs"></script>
-
     <title>Home</title>
 </head>
 <body>
@@ -17,6 +16,14 @@
             <li><a href="shop.html">Shop</a></li>
             <li><a href="help.html">Help</a></li>
             <li><a href="cart.html">Cart</a></li>
+            <p id="greeting">Welcome</p>
+            <button id="login" disabled="true">Log in</button>
+            <button id="logout" disabled="true">Log out</button>
+            <p><button id="call" disabled>Make an API call</button>
+
+            <p>Below is the response from the server API:
+                
+            <pre id="server-response"></pre>
         </ul>
     </nav>
 
@@ -24,5 +31,6 @@
         <h1>Home</h1>
     </div>
 
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/1.13/auth0-spa-js.production.js"></script>
 </body>
 </html>

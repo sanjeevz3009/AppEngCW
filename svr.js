@@ -45,20 +45,21 @@ function putBrick(req, res) {
     res.json(brick);
 }
 
-// serve the auth config publicly
+// Code used and referenced from https://github.com/portsoc/auth0-example
+// Serve the Auth config publicly
 app.get('/auth_config', (req, res) => {
   res.json(authConfig);
 });
 
 const auth0 = auth0Helpers(authConfig);
 
-// protect /api from unauthenticated users
+// Protect api from unauthenticated users
 app.use('/api', auth0.checkJwt);
 
 app.get('/api/hello', async (req, res) => {
   const userId = auth0.getUserID(req);
 
-  // load the user information, in production this would need caching or storing in a database
+  // Load the user information, in production this would need caching or storing in a database
   const profile = await auth0.getProfile(req);
 
   res.send(`Hello user ${userId}, here's your profile:\n${JSON.stringify(profile, null, 2)}`);
@@ -66,7 +67,7 @@ app.get('/api/hello', async (req, res) => {
   console.log('successful authenticated request by ' + userId);
 });
 
-// this will serve the files present in static/ inside this stage
+// This will serve the files present in static/ inside this stage
 app.use(express.static(path.join(path.dirname(url.fileURLToPath(import.meta.url)), '../static')));
 
 

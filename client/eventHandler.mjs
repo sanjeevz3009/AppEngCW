@@ -26,5 +26,4 @@ export function load() {
     addEventListeners(el.buttonAdd);
     addEventListeners(el.buttonMinus);
     addEventListeners(el.buttonAddBasket);
-    // deleteButtonEventListener();
 }

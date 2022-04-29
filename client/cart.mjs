@@ -12,7 +12,7 @@ function removeContentFrom(what) {
     what.textContent = "";
 }
 
-// Displays the cart on the cart page
+// Displays the items on the cart page
 export async function showBricksCart() {
     removeContentFrom(el.cartList);
     const items = getItems();
@@ -45,7 +45,6 @@ function totalCartPrice(itemPrices) {
     checkoutButtonEventListener();
 }
 
-
 // Changes the from cart page to checkout page
 function changePage() {
     window.location.href = "/checkout.html";
@@ -77,7 +76,7 @@ function createDeleteButton(id) {
     divDataID.append(deleteButton);
 }
 
-// Deletes the brick off LocalStorage and updated cart page
+// Deletes the brick off LocalStorage and updates the cart page
 function deleteBrick(e) {
     let el = e.target.parentElement;
     localStorage.removeItem(el.dataset.id);

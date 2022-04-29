@@ -1,5 +1,6 @@
 // Code used and referenced from https://github.com/portsoc/auth0-example
 
+// Fetches the auth_config js file
 async function fetchAuthConfig() {
     const response = await fetch('/auth_config');
     if (response.ok) {
@@ -12,6 +13,7 @@ async function fetchAuthConfig() {
 //  Global variable that is our entry point to the auth library
 let auth0 = null;
 
+// Intialises the Auth0 client
 async function initializeAuth0Client() {
     const config = await fetchAuthConfig();
 
@@ -103,11 +105,11 @@ function setupListeners() {
 }
 
 // This will run when the page loads
-async function init() {
+async function pageLoaded() {
     await initializeAuth0Client();
     await setupListeners();
     await updateAuthUI();
     await handleAuth0Redirect();
 }
 
-window.addEventListener('load', init);
+window.addEventListener('load', pageLoaded);

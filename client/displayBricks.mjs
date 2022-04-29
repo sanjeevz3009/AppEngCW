@@ -7,7 +7,7 @@ function getBrickQuantity(id) {
     return quantity;
 }
 
-// Try see if el object workd for creation of elements
+// Try see if el object work for creation of elements
 
 // Sets the brick attributes
 function setBrickAttributes(brick, where) {
@@ -71,7 +71,7 @@ function createBrickElements(where, quantity) {
 
     where.append(buttonAddBasket);
 
-    // Executes the functions necessaray from
+    // Executes the functions necessary from
     // the eventHandler module
     // to attach the buttons elements to each brick
     load();

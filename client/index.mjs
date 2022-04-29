@@ -33,7 +33,7 @@ async function updateAuthUI() {
     if (isAuthenticated) {
         const user = await auth0.getUser();
         const el = document.getElementById('greeting');
-        el.textContent = `Hello ${user.name} (${user.email})!`;
+        el.textContent = `Welcome, ${user.given_name} (${user.email})`;
     }
 }
 

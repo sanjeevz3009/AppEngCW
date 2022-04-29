@@ -1,11 +1,18 @@
 import uuid from "uuid-random";
 import sqlite3 from "sqlite3";
+import { open } from "sqlite";
 
 async function init() {
-    const db = await sqlite3.open("./database.sqlite", { verbose: true});
+    const db = await open({filename: './brickStore.db', driver: sqlite3.Database}, { verbose: true});
     await db.migrate( { migrationsPath: "./migrations-sqlite" });
     return db;
 }
+
+// async function init() {
+//     const db = await sqlite.open("./brickStore.db", { verbose: true});
+//     await db.migrate( { migrationsPath: "./migrations-sqlite" });
+//     return db;
+// }
 
 const dbConnection = init();
 

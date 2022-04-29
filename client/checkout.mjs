@@ -26,6 +26,7 @@ async function updateStockLevels(id, newQuantity) {
 
     if (response.ok) {
         console.log("Brick stock levels updated!");
+        localStorage.clear();
     } else {
         console.log("Brick stock levels failed to update!", response);
     }

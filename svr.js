@@ -1,5 +1,5 @@
 import express from "express";
-import * as br from "./bricksResult.mjs";
+import * as br from "./brickResult2.mjs";
 import path from "path";
 import url from "url";
 
@@ -70,6 +70,13 @@ app.get('/api/hello', async (req, res) => {
 // This will serve the files present in static/ inside this stage
 app.use(express.static(path.join(path.dirname(url.fileURLToPath(import.meta.url)), '../static')));
 
+// Wrap async function for express.js error handling
+function asyncWrap(f) {
+  return (req, res, next) => {
+    Promise.resolve(f(req, res, next))
+      .catch((e) => next(e || new Error()));
+  };
+}
 
 app.get("/bricks", getBricks);
 app.get("/bricks/:id", getBrick);

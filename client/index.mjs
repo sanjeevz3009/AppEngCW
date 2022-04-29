@@ -1,115 +1,41 @@
-// Code used and referenced from https://github.com/portsoc/auth0-example
+import { showBricks } from "./displayBricks.mjs";
+import { loadAuth } from "./auth0.mjs";
 
-// Fetches the auth_config js file
-async function fetchAuthConfig() {
-    const response = await fetch('/auth_config');
+const el = {};
+
+// Removes all contents from a given element
+function removeContentFrom(what) {
+    console.log(what);
+    what.textContent = "";
+}
+
+// Loads the bricks from the back-end
+async function loadBricks() {
+    const response = await fetch("bricks");
+    let bricks;
     if (response.ok) {
-        return response.json();
+        bricks = await response.json();
+        console.log(bricks);
     } else {
-        throw response;
-    }
-}
-
-//  Global variable that is our entry point to the auth library
-let auth0 = null;
-
-// Intialises the Auth0 client
-async function initializeAuth0Client() {
-    const config = await fetchAuthConfig();
-
-    auth0 = await createAuth0Client({
-        domain: config.domain,
-        client_id: config.clientId,
-        audience: config.audience,
-    });
-}
-
-// Update the state of all authentication-related elements
-async function updateAuthUI() {
-    const isAuthenticated = await auth0.isAuthenticated();
-
-    document.getElementById('login').disabled = isAuthenticated;
-    document.getElementById('logout').disabled = !isAuthenticated;
-    document.getElementById('call').disabled = !isAuthenticated;
-
-    if (isAuthenticated) {
-        const user = await auth0.getUser();
-        const el = document.getElementById('greeting');
-        el.textContent = `Welcome, ${user.given_name} (${user.email})`;
-    }
-}
-
-async function login() {
-    await auth0.loginWithRedirect({
-        redirect_uri: window.location.origin,
-    });
-}
-
-function logout() {
-    auth0.logout({
-        returnTo: window.location.origin,
-    });
-}
-
-// Check for the code and state parameters from Auth0 login redirect
-async function handleAuth0Redirect() {
-    const isAuthenticated = await auth0.isAuthenticated();
-
-    if (isAuthenticated) return;
-
-    const query = window.location.search;
-    if (query.includes('state=')) {
-        try {
-            // process the login state
-            await auth0.handleRedirectCallback();
-        } catch (e) {
-            window.alert(e.message || 'authentication error, sorry');
-            logout();
-        }
-
-        // Remove the query parameters
-        window.history.replaceState({}, document.title, '/');
-
-        await updateAuthUI();
-    }
-}
-
-async function callServer() {
-    const token = await auth0.getTokenSilently();
-
-    const el = document.getElementById('server-response');
-    el.textContent = 'loading…';
-
-    const fetchOptions = {
-        credentials: 'same-origin',
-        method: 'GET',
-        headers: { Authorization: 'Bearer ' + token },
-    };
-    const response = await fetch('/api/hello', fetchOptions);
-    if (!response.ok) {
-        // Handle the error
-        el.textContent = 'Server error:\n' + response.status;
-        return;
+        bricks = ["Failed to load the bricks!"];
     }
 
-    // Handle the response
-    const data = await response.text();
-    el.textContent = data;
+    removeContentFrom(el.bricksList);
+    showBricks(bricks, el.bricksList);
 }
 
-// Make sure all interactive elements in the page have code attached to them
-function setupListeners() {
-    document.getElementById('login').addEventListener('click', login);
-    document.getElementById('logout').addEventListener('click', logout);
-    document.getElementById('call').addEventListener('click', callServer);
+// Page elements used in the program are
+// setup here for convenience
+function prepareHandles() {
+    el.bricksList = document.querySelector("#bricksList2");
 }
 
-// This will run when the page loads
-async function pageLoaded() {
-    await initializeAuth0Client();
-    await setupListeners();
-    await updateAuthUI();
-    await handleAuth0Redirect();
+// Loads all the functions necessaray for the page
+function pageLoaded() {
+    console.log("Shop page loaded");
+    prepareHandles();
+    loadBricks();
+    loadAuth();
 }
 
-window.addEventListener('load', pageLoaded);
+window.addEventListener("load", pageLoaded);

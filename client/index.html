@@ -12,8 +12,7 @@
     <nav id="navBar">
         <h1>Bricks Store</h1>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="shop.html">Shop</a></li>
+            <li><a href="index.html">Shop</a></li>
             <li><a href="help.html">Help</a></li>
             <li><a href="cart.html">Cart</a></li>
             <p id="greeting">Welcome</p>
@@ -26,8 +25,27 @@
         </ul>
     </nav>
 
-    <div class="home">
-        <h1>Home</h1>
+    <div id="bricksSection">
+        <h1>Shop now</h1>
+
+        <div id="bricksList">
+            <ul id="bricksList2">
+                <li>
+                    <div data-id="dskjdshkjhsd">
+                        <div>Brick 2</div>
+                        <div>£2.33</div>
+                        <div>Green</div>
+                        <div>
+                            <button id="buttonMinus">-</button>
+                            <input id="input" type="number">
+                            <button id="buttonAdd">+</button>    
+                        </div>                    
+                        <button id="addBasket">Add To Basket</button>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        
     </div>
 
     <script src="https://cdn.auth0.com/js/auth0-spa-js/1.13/auth0-spa-js.production.js"></script>

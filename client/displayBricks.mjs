@@ -7,8 +7,6 @@ function getBrickQuantity(id) {
     return quantity;
 }
 
-// Try see if el object work for creation of elements
-
 // Sets the brick attributes
 function setBrickAttributes(brick, where) {
     const li = document.createElement("li");

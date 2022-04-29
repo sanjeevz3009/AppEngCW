@@ -97,7 +97,7 @@ function prepareHandles() {
     el.cartList = document.querySelector("#cartList2");
 }
 
-// Loads the page by executing the necessaray functions
+// Loads the page by executing the necessary functions
 function pageLoaded() {
     console.log("Cart page loaded");
     prepareHandles();

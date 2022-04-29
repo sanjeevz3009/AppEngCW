@@ -11,7 +11,7 @@ app.use(express.static("client"));
 
 // Gets the bricks data
 function getBricks(req, res) {
-    res.json(br.listBricks());
+  res.json(br.listBricks());
 }
 
 // app.get("/bricks", (req, res) => {
@@ -20,12 +20,12 @@ function getBricks(req, res) {
 
 // Gets the bricks data by id for validation
 function getBrick(req, res) {
-    const result = br.findBrick(req.params.id);
-    if (!result) {
-        res.status(404).send("No match for that ID!");
-        return;
-    }
-    res.json(result);
+  const result = br.findBrick(req.params.id);
+  if (!result) {
+    res.status(404).send("No match for that ID!");
+    return;
+  }
+  res.json(result);
 }
 
 // app.get("/bricks/:id", (req, res) => {
@@ -41,8 +41,8 @@ function getBrick(req, res) {
 // app.listen(8080);
 
 function putBrick(req, res) {
-    const brick = br.updateBrickQuantity(req.body);
-    res.json(brick);
+  const brick = br.updateBrickQuantity(req.body);
+  res.json(brick);
 }
 
 // Code used and referenced from https://github.com/portsoc/auth0-example

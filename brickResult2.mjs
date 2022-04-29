@@ -37,8 +37,7 @@ export async function addBrick(brick) {
 export async function updateBrickQuantity(updatedBrick) {
     const db = await dbConnection;
     const brick = findBrick(updatedBrick.id);
-
-    const statement = await db.run("UPDATE Bricks SET quantity = ? WHERE id = ?", [updatedBrick.quantity]);
+    const statement = await db.run("UPDATE Bricks SET quantity = ? WHERE id = ?", [updatedBrick.quantity, updatedBrick.id]);
 
     if (statement.changes === 0) throw new Error("Brick not found");
 

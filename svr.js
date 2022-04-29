@@ -10,8 +10,8 @@ const app = express();
 app.use(express.static("client"));
 
 // Gets the bricks data
-function getBricks(req, res) {
-  res.json(br.listBricks());
+async function getBricks(req, res) {
+  res.json(await br.listBricks());
 }
 
 // app.get("/bricks", (req, res) => {
@@ -19,8 +19,8 @@ function getBricks(req, res) {
 // });
 
 // Gets the bricks data by id for validation
-function getBrick(req, res) {
-  const result = br.findBrick(req.params.id);
+async function getBrick(req, res) {
+  const result = await br.findBrick(req.params.id);
   if (!result) {
     res.status(404).send("No match for that ID!");
     return;
@@ -40,8 +40,8 @@ function getBrick(req, res) {
 
 // app.listen(8080);
 
-function putBrick(req, res) {
-  const brick = br.updateBrickQuantity(req.body);
+async function putBrick(req, res) {
+  const brick = await br.updateBrickQuantity(req.body);
   res.json(brick);
 }
 
@@ -78,8 +78,8 @@ function asyncWrap(f) {
   };
 }
 
-app.get("/bricks", getBricks);
-app.get("/bricks/:id", getBrick);
-app.put("/bricks/:id", express.json(), putBrick);
+app.get("/bricks", asyncWrap(getBricks));
+app.get("/bricks/:id", asyncWrap(getBrick));
+app.put("/bricks/:id", express.json(), asyncWrap(putBrick));
 
 app.listen(8080);

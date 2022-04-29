@@ -19,7 +19,7 @@ function setBrickAttributes(brick, where) {
     li.append(divID);
 
     const divName = document.createElement("div");
-    divName.textContent = brick.brickName;
+    divName.textContent = brick.brick_name;
     divID.append(divName);
 
     const divPrice = document.createElement("div");

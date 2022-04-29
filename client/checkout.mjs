@@ -32,7 +32,6 @@ async function updateStockLevels(id, newQuantity) {
     }
 }
 
-
 // Loads all the functions necessaray for the page
 function pageLoaded() {
     console.log("Checkout page loaded!")

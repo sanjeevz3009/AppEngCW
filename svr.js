@@ -2,6 +2,7 @@ import express from "express";
 import * as br from "./brickResult2.mjs";
 import path from "path";
 import url from "url";
+import uuid from "uuid-random";
 
 import authConfig from "./auth_config.js";
 import auth0Helpers from './auth0_helpers.js';
@@ -9,9 +10,20 @@ import auth0Helpers from './auth0_helpers.js';
 const app = express();
 app.use(express.static("client"));
 
+// Generates a unique id for the customers order
+export function generateOrderId() {
+  const id = uuid();
+  return id;
+}
+
 // Gets the bricks data
 async function getBricks(req, res) {
   res.json(await br.listBricks());
+}
+
+// Gets the bricks data
+async function getOrders(req, res) {
+  res.json(await br.listOrders());
 }
 
 // app.get("/bricks", (req, res) => {
@@ -28,21 +40,23 @@ async function getBrick(req, res) {
   res.json(result);
 }
 
-// app.get("/bricks/:id", (req, res) => {
-//     for (const brick of bricks) {
-//         if (brick.id === req.params.id) {
-//             res.json(brick);
-//             return;
-//         }
-//     }
-//     res.status(404).send("No matching brick for that ID.");
-// });
-
-// app.listen(8080);
+async function getOrder(req, res) {
+  const result = await br.findOrder(req.params.id);
+  if (!result) {
+    res.status(404).send("No match for that ID!");
+    return;
+  }
+  res.json(result);
+}
 
 async function putBrick(req, res) {
   const brick = await br.updateBrickQuantity(req.body);
   res.json(brick);
+}
+
+async function putOrder(req, res) {
+  const order = await br.addOrder(req.body);
+  res.json(order);
 }
 
 // Code used and referenced from https://github.com/portsoc/auth0-example
@@ -80,6 +94,9 @@ function asyncWrap(f) {
 
 app.get("/bricks", asyncWrap(getBricks));
 app.get("/bricks/:id", asyncWrap(getBrick));
+app.get("/orders", asyncWrap(getOrders));
+app.get("/orders/:id", asyncWrap(getOrder));
 app.put("/bricks/:id", express.json(), asyncWrap(putBrick));
+app.post("/bricks/order", express.json(), asyncWrap(putOrder));
 
 app.listen(8080);

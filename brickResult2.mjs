@@ -22,9 +22,20 @@ export async function listBricks() {
     return db.all("SELECT * FROM Bricks");
 }
 
+export async function listOrders() {
+    const db = await dbConnection;
+    // Do a order by here
+    return db.all("SELECT * FROM Orders");
+}
+
 export async function findBrick(id) {
     const db = await dbConnection;
     return db.get("SELECT * FROM Bricks WHERE id = ?", id);
+}
+
+export async function findOrder(id) {
+    const db = await dbConnection;
+    return db.get("SELECT * FROM Order_items WHERE order_id = ?", id);
 }
 
 export async function addBrick(brick) {
@@ -41,5 +52,23 @@ export async function updateBrickQuantity(updatedBrick) {
 
     if (statement.changes === 0) throw new Error("Brick not found");
 
+    // addOrderItems(updatedBrick);
     return brick;
+}
+
+export async function addOrder(order) {
+    console.log(order);
+    const id = uuid();
+    const db = await dbConnection;
+    await db.run("INSERT INTO Orders VALUES (?, ?)", [id, order.order_status]);
+
+    addOrderItems(id, order);
+}
+
+async function addOrderItems(id, order) {
+    const db = await dbConnection;
+
+    for (const orderItem of order.items) {
+        await db.run("INSERT INTO Order_items VALUES (?, ?, ?)", [id, orderItem[0], orderItem[1]]);
+    }
 }

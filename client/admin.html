@@ -15,40 +15,41 @@
             <li><a href="index.html">Shop</a></li>
             <li><a href="help.html">Help</a></li>
             <li><a href="cart.html">Cart</a></li>
-            <li><a href="admin.html">Cart</a></li>
-            <p id="greeting">Welcome</p>
-            <button id="login" disabled="true">Log in</button>
-            <button id="logout" disabled="true">Log out</button>
-            <p><button id="call" disabled>Make an API call</button>
-            <p>Below is the response from the server API:
-                
-            <pre id="server-response"></pre>
+            <li><a href="admin.html">Admin</a></li>
         </ul>
     </nav>
 
-    <div id="customerOrders">
-        <h1>Customer orders:</h1>
+    <div id="dashboard">
+        <h1>Admin Dashboard</h1>
+        
+        <ul id="dashboardButtons">
+            <button id="customerOrders">Customer Orders</button>
+            <button id="bricksAvailable">Bricks Available</button>
+            <button id="createBrick">Create A New Brick</button>
+        </ul>
+        
 
-        <div id="bricksList">
-            <ul id="bricksList2">
-                <li>
-                    <div data-id="dskjdshkjhsd">
-                        <div>Brick 2</div>
-                        <div>£2.33</div>
-                        <div>Green</div>
-                        <div>
-                            <button id="buttonMinus">-</button>
-                            <input id="input" type="number">
-                            <button id="buttonAdd">+</button>    
-                        </div>                    
-                        <button id="addBasket">Add To Basket</button>
-                    </div>
-                </li>
-            </ul>
+        <!-- <div id="bricksList">
+            <div data-id="dskjdshkjhsd">
+                <div id="fields">
+                    <p>Brick Name <input id="brickName" type="text" value="Brick 2" placeholder="Brick Name" readonly></p>
+                    <p>Price <input id="brickPrice" type="text" value="2.33" placeholder="e.g. 2.50 in £" readonly></p>
+                    <p>Colour <input id="brickColour" type="text" value="Green" placeholder="Colour" readonly></p>
+                    <button id="buttonMinus">-</button>
+                    <input id="brickQuantity" type="number" value="1" placeholder="Quantity">
+                    <button id="buttonAdd">+</button>    
+                </div>
+                <button id="edit">Edit</button>  
+                <button id="update">Update</button>
+            </div>
+        </div> -->
+        <div id="orders">
+            <p>Order ID: xsdjfnjwkrnkjn32rnj</p>
+            <button id="dispatch">Dispatch</button>
+            <button id="details">Show Detail</button>
         </div>
         
     </div>
 
-    <script src="https://cdn.auth0.com/js/auth0-spa-js/1.13/auth0-spa-js.production.js"></script>
 </body>
 </html>

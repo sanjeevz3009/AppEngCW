@@ -2,7 +2,7 @@ import { showBricks } from "./displayBricks.mjs";
 import { checkoutElements } from "./displayBricks.mjs";
 import { getItems } from "./localStorage.mjs";
 
-// Move event listeners to another module
+// Prevent users ordering more than stocks available
 
 const el = {};
 
@@ -22,7 +22,7 @@ export async function showBricksCart() {
         const response = await fetch("bricks/" + item[0]);
         if (response.ok) {
             const data = await response.json();
-            itemPrices.push(data.price);
+            itemPrices.push(data.price * item[1]);
             console.log(data);
             showBricks(data, el.cartList);
             createDeleteButton(item[0]);

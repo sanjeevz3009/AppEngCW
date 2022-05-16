@@ -1,5 +1,5 @@
 # AppEngCW - Bricks Store
-### Usuage
+### Usage
 * `npm install` to install the required modules and files.
 * `npm start` to run the web application.
 ### Features
@@ -20,6 +20,6 @@
 
 ### Future improvements
 * I have also included `0Auth0` to the web app and you can fully login and interact with `0Auth0` but I haven't fully integrated with the web app, so it's invisible/ disabled on the front-end.
-* Finish off the design for the checkout and admin page.
-* I am already generating ID for orders that is currently stored on the database. I can present this to the user and implement a functionality where they can search their order see the order status (already implemented in the back-end).
+* I am already generating ID for orders that is currently stored on the database. I can present this to the user and implement a functionality where they can search their order see the order status (already implemented in the back-end) for the admin page where owner/ staff can see specific orders if they are dispatched or not and dispatch them.
 * Add images to the bricks.
+* Finish off the design for the checkout and admin page.

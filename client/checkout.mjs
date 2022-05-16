@@ -1,20 +1,20 @@
 import { getItems } from "./localStorage.mjs";
 // import { generateOrderId } from "../svr.js";
 
-// Brick quantity calculator 
-async function brickQuantityCalculator() {
-    const items = getItems();
-    for (const item of items) {
-        const response = await fetch("bricks/" + item[0]);
-        if (response.ok) {
-            const data = await response.json();
-            console.log(data);
-            const newQuantity = data.quantity - item[1];
-            console.log(newQuantity);
-            updateStockLevels(item[0], newQuantity, item[1]);
-        }
-    }
-}
+// // Brick quantity calculator 
+// async function brickQuantityCalculator() {
+//     const items = getItems();
+//     for (const item of items) {
+//         const response = await fetch("bricks/" + item[0]);
+//         if (response.ok) {
+//             const data = await response.json();
+//             console.log(data);
+//             const newQuantity = data.quantity - item[1];
+//             console.log(newQuantity);
+//             updateStockLevels(item[0], newQuantity, item[1]);
+//         }
+//     }
+// }
 
 // Brick quantity calculator 
 // async function getItemsId() {
@@ -47,24 +47,24 @@ async function createAnOrder() {
     }
 }
 
-// Decreases the brick quantity levels
-async function updateStockLevels(id, newQuantity, quantityBought) {
-    // const orderId = generateOrderId();
-    let payload = { id, quantity: newQuantity, quantityBought};
-    let response = await fetch(`bricks/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-    });
+// // Decreases the brick quantity levels
+// async function updateStockLevels(id, newQuantity, quantityBought) {
+//     // const orderId = generateOrderId();
+//     let payload = { id, quantity: newQuantity, quantityBought};
+//     let response = await fetch(`bricks/${id}`, {
+//         method: "PUT",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify(payload),
+//     });
 
-    if (response.ok) {
-        console.log("Brick stock levels updated!");
-        localStorage.clear();
-        sendConfirmation(orderId);
-    } else {
-        console.log("Brick stock levels failed to update!", response);
-    }
-}
+//     if (response.ok) {
+//         console.log("Brick stock levels updated!");
+//         localStorage.clear();
+//         sendConfirmation(orderId);
+//     } else {
+//         console.log("Brick stock levels failed to update!", response);
+//     }
+// }
 
 function sendConfirmation(orderId) {
     const div = document.querySelector("#checkout");

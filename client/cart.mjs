@@ -64,6 +64,7 @@ function updateAddBasketName() {
     for (const name of addBasket) {
         name.textContent = "Update";
     }
+    updateButtonEventListener();
 }
 
 // Creates a delete button for bricks in the cart page
@@ -83,11 +84,25 @@ function deleteBrick(e) {
     showBricksCart();
 }
 
+// Updates the total price on the cart page
+function updateTotalPrice() {
+    showBricksCart();
+}
+
 // Listeners for delete buttons on the cart page
 function deleteButtonEventListener() {
     const deleteButton = document.querySelectorAll("#deleteButton");
     for (const button of deleteButton) {
         button.addEventListener("click", deleteBrick);
+    }
+}
+
+// Listeners for update buttons on the cart page
+function updateButtonEventListener() {
+    const updateButton = document.querySelectorAll("#addBasket");
+    console.log(updateButton);
+    for (const button of updateButton) {
+        button.addEventListener("click", updateTotalPrice);
     }
 }
 

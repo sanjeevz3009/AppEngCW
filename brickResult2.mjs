@@ -35,7 +35,12 @@ export async function findBrick(id) {
 
 export async function findOrder(id) {
     const db = await dbConnection;
-    return db.get("SELECT * FROM Order_items WHERE order_id = ?", id);
+    return db.all("SELECT * FROM Order_items WHERE order_id = ?", id);
+}
+
+export async function findOrderStatus(id) {
+    const db = await dbConnection;
+    return db.all("SELECT order_status FROM Orders WHERE order_id = ?", id);
 }
 
 export async function addBrick(brick) {
@@ -52,8 +57,12 @@ export async function updateBrickQuantity(updatedBrick) {
 
     if (statement.changes === 0) throw new Error("Brick not found");
 
-    // addOrderItems(updatedBrick);
     return brick;
+}
+
+export async function changeOrderStatus(updatedOrder) {
+    const db = await dbConnection;
+    await db.run("UPDATE Orders SET order_status = ? WHERE order_id = ?", [updatedOrder.status, updatedOrder.id]);
 }
 
 export async function addOrder(order) {

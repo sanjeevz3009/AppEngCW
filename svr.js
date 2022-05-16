@@ -49,6 +49,15 @@ async function getOrder(req, res) {
   res.json(result);
 }
 
+async function getOrderStatus(req, res) {
+  const result = await br.findOrderStatus(req.params.id);
+  if (!result) {
+    res.status(404).send("No match for that ID!");
+    return;
+  }
+  res.json(result);
+}
+
 async function putBrick(req, res) {
   const brick = await br.updateBrickQuantity(req.body);
   res.json(brick);
@@ -56,6 +65,11 @@ async function putBrick(req, res) {
 
 async function putOrder(req, res) {
   const order = await br.addOrder(req.body);
+  res.json(order);
+}
+
+async function putOrderStatus(req, res) {
+  const order = await br.changeOrderStatus(req.body);
   res.json(order);
 }
 
@@ -94,9 +108,15 @@ function asyncWrap(f) {
 
 app.get("/bricks", asyncWrap(getBricks));
 app.get("/bricks/:id", asyncWrap(getBrick));
+
+app.put("/bricks/:id", express.json(), asyncWrap(putBrick));
+
+app.post("/bricks/order", express.json(), asyncWrap(putOrder));
+
 app.get("/orders", asyncWrap(getOrders));
 app.get("/orders/:id", asyncWrap(getOrder));
-app.put("/bricks/:id", express.json(), asyncWrap(putBrick));
-app.post("/bricks/order", express.json(), asyncWrap(putOrder));
+app.get("/orders/status/:id", asyncWrap(getOrderStatus));
+
+app.put("/orders/:id", express.json(), asyncWrap(putOrderStatus));
 
 app.listen(8080);

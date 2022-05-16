@@ -26,10 +26,6 @@ async function getOrders(req, res) {
   res.json(await br.listOrders());
 }
 
-// app.get("/bricks", (req, res) => {
-//     res.json(bricks);
-// });
-
 // Gets the bricks data by id for validation
 async function getBrick(req, res) {
   const result = await br.findBrick(req.params.id);
@@ -40,6 +36,7 @@ async function getBrick(req, res) {
   res.json(result);
 }
 
+// Gets the order data
 async function getOrder(req, res) {
   const result = await br.findOrder(req.params.id);
   if (!result) {
@@ -49,6 +46,7 @@ async function getOrder(req, res) {
   res.json(result);
 }
 
+// Gets the order status for specific orders
 async function getOrderStatus(req, res) {
   const result = await br.findOrderStatus(req.params.id);
   if (!result) {
@@ -58,16 +56,19 @@ async function getOrderStatus(req, res) {
   res.json(result);
 }
 
+// Updated the brick stock level
 async function putBrick(req, res) {
   const brick = await br.updateBrickQuantity(req.body);
   res.json(brick);
 }
 
+// Adds a new order to the database
 async function putOrder(req, res) {
   const order = await br.addOrder(req.body);
   res.json(order);
 }
 
+// Updates the order status
 async function putOrderStatus(req, res) {
   const order = await br.changeOrderStatus(req.body);
   res.json(order);

@@ -1,0 +1,278 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #2c2a34;
+}
+
+#navBar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 5em;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+}
+
+#navBar h1 {
+  position: absolute;
+  left: 0;
+  margin: 3px 0px 0px 10px;
+  letter-spacing: 2px;
+  color: white;
+  /* background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-size: 400% 400%;
+    animation: gradient 5s ease infinite; */
+}
+
+#help h1 {
+  position: relative;
+  margin-left: 0.3em;
+  left: 0;
+  letter-spacing: 2px;
+  color: #3fd893;
+}
+
+#help {
+  overflow: hidden;
+  width: 800px;
+  height: 270px;
+  border-radius: 0.5em;
+  margin-left: 24em;
+  margin-top: 8em;
+  background-color: white;
+  font-family: sans-serif;
+  font-style: normal;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+#navBar ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#navBar li a {
+  display: flex;
+  text-align: center;
+  position: relative;
+  padding: 3px 30px 5px 14px;
+  text-decoration: none;
+  font-size: 1.3em;
+  color: white;
+}
+
+#navBar li a:hover {
+  color: #3fd893;
+}
+
+#navBar li a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.1em;
+  background-color: hotpink;
+  opacity: 0;
+  transition: opacity 300ms, transform 300ms;
+}
+
+#navBar li a::after {
+  opacity: 1;
+  transform: scale(0);
+  transform-origin: center;
+}
+
+#navBar li a:hover::after,
+#navBar li a:focus::after {
+  transform: scale(1);
+}
+
+#navBar h1:hover {
+  background: #3fd893;
+  text-shadow: none;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+#bricksSection h1 {
+  position: relative;
+  margin-left: 0.3em;
+  left: 0;
+  letter-spacing: 2px;
+  color: #3fd893;
+}
+
+#cartSection h1 {
+    position: relative;
+    margin-left: 0.3em;
+    left: 0;
+    letter-spacing: 2px;
+    color: #3fd893;
+  }
+
+#bricksList {
+  /* margin-left: 20em; */
+  /* border-color: rgb(255, 255, 255); */
+  /* border-style: solid; */
+}
+
+#bricksList2 {
+  list-style: none;
+}
+
+/* #bricksList2 { */
+/* margin-left: 2em; */
+/* border-color: yellow; */
+/* border-style: solid; */
+/* } */
+
+#bricksList2 {
+  margin: 0 auto;
+  text-align: center;
+}
+
+#bricksList2 li {
+  display: inline-block;
+  vertical-align: top;
+  padding: 3em;
+}
+
+#cartList2 {
+  margin: 0 auto;
+  text-align: center;
+}
+
+#cartList2 li {
+  display: list-item;
+  vertical-align: top;
+  padding: 3em;
+}
+
+#addBasket {
+  padding: 9px 25px;
+  background-color: #3fd893;
+  border-radius: 48px;
+  color: #f4efe4;
+  border: 3px solid #f4efe4;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1em;
+}
+
+#addBasket:hover {
+  border-color: grey;
+}
+
+#buttonMinus {
+  /* padding: 9px 25px; */
+  height: 1.5em;
+  width: 1.5em;
+  background-color: #3fd893;
+  /* border-radius: 48px; */
+  color: #f4efe4;
+  border: 2px solid #f4efe4;
+  /* font-weight: 600; */
+  cursor: pointer;
+}
+
+#buttonMinus:hover {
+  border-color: grey;
+}
+
+#buttonAdd {
+  height: 1.5em;
+  width: 1.5em;
+  background-color: #3fd893;
+  /* border-radius: 48px; */
+  color: #f4efe4;
+  border: 2px solid #f4efe4;
+  /* font-weight: 600; */
+  cursor: pointer;
+}
+
+#buttonAdd:hover {
+  border-color: grey;
+}
+
+#deleteButton {
+    padding: 9px 25px;
+    background-color: #3fd893;
+    border-radius: 48px;
+    color: #f4efe4;
+    border: 3px solid #f4efe4;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1em;
+    margin-left: 1em;
+}
+
+#deleteButton:hover {
+    border-color: grey;
+}
+
+#buttonCheckout {
+    padding: 9px 25px;
+    background-color: #3fd893;
+    border-radius: 48px;
+    color: #f4efe4;
+    border: 3px solid #f4efe4;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1em;
+    margin-left: 1em;
+}
+
+#buttonCheckout:hover {
+    border-color: grey;
+}
+
+#input {
+  width: 8em;
+  height: 1.5em;
+  border: 2px solid #f4efe4;
+}
+
+#brickName {
+  letter-spacing: 2px;
+  color: white;
+}
+
+#brickPrice {
+  letter-spacing: 2px;
+  color: white;
+}
+
+#brickColor {
+  letter-spacing: 2px;
+  color: white;
+  margin-bottom: 1em;
+}
+
+
+#totalPrice {
+    letter-spacing: 2px;
+    color: white;
+}
+  

@@ -18,14 +18,17 @@ function setBrickAttributes(brick, where) {
 
     const divName = document.createElement("div");
     divName.textContent = brick.brick_name;
+    divName.id = "brickName";
     divID.append(divName);
 
     const divPrice = document.createElement("div");
     divPrice.textContent = `£${brick.price}`;
+    divPrice.id = "brickPrice";
     divID.append(divPrice);
 
     const divColor = document.createElement("div");
     divColor.textContent = brick.color;
+    divColor.id = "brickColor";
     divID.append(divColor);
 
     const quantity = getBrickQuantity(brick.id);

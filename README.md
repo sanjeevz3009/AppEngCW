@@ -23,3 +23,6 @@
 * I am already generating ID for orders that is currently stored on the database. I can present this to the user and implement a functionality where they can search their order see the order status (already implemented in the back-end) for the admin page where owner/ staff can see specific orders if they are dispatched or not and dispatch them.
 * Add images to the bricks.
 * Finish off the design for the checkout and admin page.
+* Add functionality to cancel dispatch/ delete order from customers.
+* Add a functionality where the admin can delete the orders, create new bricks and edit bricks that already exist on the database.
+* Responsive design to fit most devices and screen resolutions.

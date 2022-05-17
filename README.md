@@ -21,9 +21,13 @@
 ### Future improvements
 * I have also included `0Auth0` to the web app and you can fully login and interact with `0Auth0` but I haven't fully integrated with the web app, so it's invisible/ disabled on the front-end.
 * I can use `0Auth0` to create user accounts and store order details for users and other things, such as saving the cart on the database for them so they can access it anywhere not just on their local device.
+
 * I am already generating ID for orders that is currently stored on the database. I can present this to the user and implement a functionality where they can search their order see the order status (already implemented in the back-end) for the admin page where owner/ staff can see specific orders if they are dispatched or not and dispatch them.
+
 * Add images to the bricks.
 * Finish off the design for the checkout and admin page.
+
 * Add functionality to cancel dispatch/ delete order from customers.
 * Add a functionality where the admin can delete the orders, create new bricks and edit bricks that already exist on the database.
+
 * Responsive design to fit most devices and screen resolutions.
